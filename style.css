@@ -1,0 +1,193 @@
+/*Palette colori 
+lightblue sfondo rgb(100,148,235);
+blue rgba(14,72,213,255);
+green rgb(5,164,45);
+orange 194, 134, 11;
+red 148, 44, 52
+*/
+/*CSS RESET*/
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: rgb(100, 148, 235);
+    font-family: "Rubik", sans-serif;
+    font-weight: 400;
+    font-size:18px;
+
+}
+:root{
+    --cell-side: 60px;
+}
+/*Header*/
+img {
+    margin: 0 auto;
+    max-width: 640px;
+    display: block;
+}
+
+@media screen and (max-width:768px) {
+    img {
+        max-width: 300px;
+    }
+
+}
+
+/*Input panel*/
+.input-field {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+input {
+    width: 235px;
+    height: 40px;
+    background-color: rgba(144, 176, 238, 255);
+    border: 2px solid rgba(14, 72, 213, 255);
+    border-radius: 4px;
+    padding: 10px;
+    display: block;
+    position: absolute;
+
+}
+
+input:focus {
+    outline-style: none;
+    box-shadow: none;
+}
+
+#match-word {
+    background-color: rgba(14, 72, 213, 255);
+    color: rgb(255, 255, 255);
+    border: rgba(14, 72, 213, 255);
+    width: 30px;
+    height: 30px;
+    position: relative;
+    margin-left: 195px;
+    cursor: pointer;
+    border-radius: 4px;
+
+}
+
+#match-word img{
+    width: 20px;
+    height: 20px;
+}
+
+.box-match-button {
+    border: 2px solid rgba(14, 72, 213, 255);
+    border-left-style: none;
+    width: 40px;
+    height: 40px;
+    background-color: rgba(144, 176, 238, 255);
+    padding-top: 3px;
+    padding-bottom: 2px;
+    padding-left: 4px;
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
+}
+
+/*Game game panel*/
+.grid {
+    display: flex;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    margin: 0 auto;
+    margin-top: 30px;
+}
+
+.grid-5-chars {
+    width: calc(var(--cell-side) * 5);
+    height: calc(var(--cell-side)  * 5);
+}
+
+.grid-6-chars {
+    width: calc(var(--cell-side) * 6);
+    height: calc(var(--cell-side) * 6);
+}
+
+.grid-7-chars {
+    width: calc(var(--cell-side) * 7);
+    height: calc(var(--cell-side) * 7);
+}
+
+.grid-8-chars {
+    width: calc(var(--cell-side) * 8);
+    height: calc(var(--cell-side) * 6);
+}
+
+.cell {
+    width: 56px;
+    height: 56px;
+    border: 1px solid rgb(255, 255, 255);
+    margin: 2px;
+    border-radius: 4px;
+    color: rgb(255, 255, 255);
+    text-transform: uppercase;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.cell-green {
+    background-color: rgb(5, 164, 45);
+}
+
+.cell-orange {
+    background-color: rgb(194, 134, 11);
+}
+
+.cell-blue {
+    background-color: rgba(14, 72, 213, 255);
+}
+
+.cell-red {
+    background-color: rgba(220, 20, 60);
+}
+
+.cell-white {
+    background-color: white;
+}
+
+/*Progress bar*/
+.progress-bar {
+    margin: 0 auto;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    background-color: rgb(100, 148, 235);
+    border: 1px solid rgb(255, 255, 255);
+    width: 200px;
+    height: 10px;
+}
+
+#myBar {
+    width: 100%;
+    height: 8px;
+    background-color: rgba(14, 72, 213, 255);
+
+}
+
+#next-word {
+    font-family: "Fragment Mono", monospace;
+    color: rgb(255, 255, 255);
+    background-color: rgba(14, 72, 213, 255);
+    border: 1px solid rgb(255, 255, 255);
+    padding: 10px;
+    margin: 0 auto;
+    display: block;
+    border-radius: 4px;
+    margin-bottom: 40px;
+    cursor: pointer;
+}
+
+.hidden {
+    display: none;
+}
+
+.row-div {
+    display: flex;
+}
