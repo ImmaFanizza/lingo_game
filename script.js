@@ -227,7 +227,7 @@ function chooseColor(wrongLength, rowAttempt, charsInsertedWord, cellIndex, sele
 //Funzione che confronta stringa inserita con stringa da trovare
 function selectArray(attempt) {
 
-  insertedValueWord = input.value.trim();
+  insertedValueWord = input.value.trim().toLowerCase();
   charsInsertedWord = insertedValueWord.split("");
 
   //parametro per valutazione lunghezza parola 
