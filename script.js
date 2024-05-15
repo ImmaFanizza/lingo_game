@@ -195,17 +195,18 @@ function chooseColor(wrongLength, rowAttempt, charsInsertedWord, cellIndex, sele
     } else {
 
       if (charsInsertedWord && charsInsertedWord.length != 0) {
-        //numero totale di lettere uguali incluse
+        //numero totale di lettere uguali incluse nella parola da indovinare
         let equalsCharsRandomWord = charsRandomWord.filter((char) => char == selectGrid[rowAttempt][cellIndex]);
         if (equalsCharsRandomWord) {
-          //numero totale di lettere giuste inserite
+          //lettere corrette  inserite 
           let charsCorrects = charsInsertedWord.filter((char, i) => char === charsRandomWord[i] && char === selectGrid[rowAttempt][cellIndex]);
-          //numero di lettere uguali inserite in quel momento
+    
+          //lettere uguali inserite fino alla cella iterata in questo momento
           let equalsCharsInsertedWord = dynamicChars.filter((char) => char == selectGrid[rowAttempt][cellIndex]);
-          //lettere in eccesso
+          //differenza tra lettere uguali inserite fino alla cella iterata e lettere corrette inserite
           let excessChar = equalsCharsInsertedWord.length - charsCorrects.length;
           //somma tra le lettere in eccesso inserite in quel momento e lettere corrette
-          let totalChar = excessChar + charsCorrects.length;
+          let totalChar = excessChar + charsCorrects.length; 
 
           if (charsCorrects.length < equalsCharsRandomWord.length && totalChar <= equalsCharsRandomWord.length) {
             cell.classList.remove('cell-blue');
@@ -347,6 +348,7 @@ function moveBar() {
 next_word_btn.addEventListener('click', function () {
   console.log(words);
   grid.removeAttribute("style");
+  dynamicChars = [];
   tentativo = 0;
   victory = false;
   loss = false;
