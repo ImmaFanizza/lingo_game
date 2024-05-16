@@ -12,7 +12,7 @@ let charsInsertedWord;
 let charsRandomWord;
 let gridSelected = [];
 let tentativo = 0;
-let dynamicChars = [];
+let wrongChars = [];
 let victory = false;
 let interval = null;
 let loss = false;
@@ -175,12 +175,6 @@ function drawGrid(gridMatrix, charsInsertedWord) {
 
 // Funzione che gestisce colore celle
 function chooseColor(wrongLength, rowAttempt, charsInsertedWord, cellIndex, selectGrid) {
-
-  if (dynamicChars.length == charsRandomWord.length) {
-    dynamicChars = [];
-  }
-  dynamicChars.push(selectGrid[rowAttempt][cellIndex]);
-
   //se la parola è sbagliata
   if (wrongLength == true) {
 
@@ -193,20 +187,19 @@ function chooseColor(wrongLength, rowAttempt, charsInsertedWord, cellIndex, sele
       cell.classList.remove('cell-blue');
       cell.classList.add('cell-green');
     } else {
+  
+      wrongChars.push(selectGrid[rowAttempt][cellIndex]);
 
       if (charsInsertedWord && charsInsertedWord.length != 0) {
-        //numero totale di lettere uguali incluse nella parola da indovinare
+        //lettere uguali a lettara della cella considerata incluse nella parola da indovinare
         let equalsCharsRandomWord = charsRandomWord.filter((char) => char == selectGrid[rowAttempt][cellIndex]);
-        if (equalsCharsRandomWord) {
+        if (equalsCharsRandomWord.length != 0) {
           //lettere corrette  inserite 
           let charsCorrects = charsInsertedWord.filter((char, i) => char === charsRandomWord[i] && char === selectGrid[rowAttempt][cellIndex]);
-    
-          //lettere uguali inserite fino alla cella iterata in questo momento
-          let equalsCharsInsertedWord = dynamicChars.filter((char) => char == selectGrid[rowAttempt][cellIndex]);
-          //differenza tra lettere uguali inserite fino alla cella iterata e lettere corrette inserite
-          let excessChar = equalsCharsInsertedWord.length - charsCorrects.length;
-          //somma tra le lettere in eccesso inserite in quel momento e lettere corrette
-          let totalChar = excessChar + charsCorrects.length; 
+          //lettere uguali a lettara della cella considerata inserite fino alla cella iterata
+          let equalsCharsInsertedWord = wrongChars.filter((char) => char == selectGrid[rowAttempt][cellIndex]);
+          //somma tra le lettere uguali a lettara della cella considerata in posizone errata e lettere uguali corrette
+          let totalChar = equalsCharsInsertedWord.length + charsCorrects.length; 
 
           if (charsCorrects.length < equalsCharsRandomWord.length && totalChar <= equalsCharsRandomWord.length) {
             cell.classList.remove('cell-blue');
@@ -323,6 +316,7 @@ function moveBar() {
 
   function frame() {
     if (counter == 10) {
+      wrongChars = [];
       clearInterval(interval);
       progressBar.style.width = 0;
       console.log(tentativo);
@@ -348,7 +342,7 @@ function moveBar() {
 next_word_btn.addEventListener('click', function () {
   console.log(words);
   grid.removeAttribute("style");
-  dynamicChars = [];
+  wrongChars = [];
   tentativo = 0;
   victory = false;
   loss = false;
@@ -358,7 +352,7 @@ next_word_btn.addEventListener('click', function () {
 });
 
 match_btn.addEventListener('click', function () {
-
+  wrongChars = [];
   moveBar();
   console.log(input.value);
   if (input.value == '') {
